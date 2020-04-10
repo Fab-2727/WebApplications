@@ -43,7 +43,6 @@ function getArrayOfAges() {
 		const textOfTheElement = arrayOfElements[i].innerText;
 		const position = arrayOfElements[i].innerText.search(patt1);
 		const age = textOfTheElement.trim().substr(position, 2);	//AGE 
-		console.log(age);
 		arrayOfAges.push(parseInt(age));
 	}
 	return arrayOfAges;
@@ -113,7 +112,6 @@ btn.onclick = function () {
 			maxAge.innerText = completeMax;
 			const completeMin = textMin + Math.min.apply(null, arrayAges);
 			minAge.innerText = completeMin;
-			console.log(getArrayOfAges());
 		}
 	} else {
 		alert("Ingrese valores VALIDOS, por favor");
