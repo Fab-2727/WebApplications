@@ -9,32 +9,22 @@ const minAge = document.getElementById("min-age");
 const textMax = "Edad maxima: ";
 const textMin = "Edad minima: ";
 let arrayAges = [];
-var auxiliar = 0;
+var sumOfAges = 0;
 
-//Calculator for average 
-class Calculator {
-	constructor(input) {
-		this.input = input;
-	}
-	average(number) {
-		return (eval(this.input / number));
-	}
-	setInput(input) {
-		this.input = input;
-	}
+function average(divider) {
+	return (eval(sumOfAges / divider))
 }
-//instantiation of Calculator
-mycalc = new Calculator(0);
+
 function getAverage() {
-	let auxiliar = 0;
+	let average = 0;
 	for (i = 0; i < arrayOfPersons.length; i++) {
 		const patt1 = /[1-9]/g;
 		const textOfLi = arrayOfPersons[i].innerText;
 		const position = arrayOfPersons[i].innerText.search(patt1);
 		const age = textOfLi.trim().substr(position, 2);	//AGE 
-		auxiliar += parseFloat(age);
+		average += parseFloat(age);
 	}
-	return auxiliar;
+	return average;
 }
 
 function updateAverageOfAges(value) {
@@ -77,9 +67,11 @@ var i;
 for (i = 0; i < close.length; i++) {
 	close[i].onclick = function () {
 		const elementOfList = this.parentElement;
-		// div.style.display = "none";
+		// div.style.display = "none"; //This is optional, it set the display to none instead of deleting the "row"
 		const list = elementOfList.parentElement;
 		list.removeChild(elementOfList);
+		sumOfAges = getAverage();
+		updateAverageOfAges(average(arrayOfPersons.length))
 	}
 }
 
@@ -93,8 +85,8 @@ btn.onclick = function () {
 			newPerson.appendChild(txt);
 			personsList.appendChild(newPerson);
 			//Call to outer methods to do the update of the average value;
-			mycalc.setInput(getAverage());
-			updateAverageOfAges(mycalc.average(arrayOfPersons.length));
+			sumOfAges = getAverage();
+			updateAverageOfAges(average(arrayOfPersons.length))
 			//-----------------------------------------------//
 			//ADDING DELETE BUTTON AT EACH LIST ELEMENT
 
@@ -110,6 +102,9 @@ btn.onclick = function () {
 					// div.style.display = "none";
 					const list = elementOfList.parentElement;
 					list.removeChild(elementOfList);
+					//Call to outer methods to do the update of the average value;
+					sumOfAges = getAverage();
+					updateAverageOfAges(average(arrayOfPersons.length))
 				}
 			}
 			//CALLING OUTER METHODS TO GET ARRAY OF AGES, MIN AND MAX;
