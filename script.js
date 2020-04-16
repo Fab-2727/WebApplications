@@ -12,7 +12,11 @@ let arrayAges = [];
 var sumOfAges = 0;
 
 function average(divider) {
-	return (eval(sumOfAges / divider))
+	if (divider === 0) {
+		return (0)
+	} else {
+		return (eval(sumOfAges / divider))
+	}
 }
 
 function getAverage() {
@@ -71,6 +75,17 @@ for (i = 0; i < close.length; i++) {
 		list.removeChild(elementOfList);
 		sumOfAges = getAverage();
 		updateAverageOfAges(average(arrayOfPersons.length))
+		//CALLING OUTER METHODS TO GET ARRAY OF AGES, MIN AND MAX;
+		arrayAges = getArrayOfAges();
+		if (arrayAges.length == 0) {
+			maxAge.innerText = textMax + '0';
+			minAge.innerText = textMax + '0';
+		} else {
+			const completeMax = textMax + Math.max.apply(null, arrayAges);
+			maxAge.innerText = completeMax;
+			const completeMin = textMin + Math.min.apply(null, arrayAges);
+			minAge.innerText = completeMin;
+		}
 	}
 }
 
@@ -104,6 +119,16 @@ btn.onclick = function () {
 					//Call to outer methods to do the update of the average value;
 					sumOfAges = getAverage();
 					updateAverageOfAges(average(arrayOfPersons.length))
+					arrayAges = getArrayOfAges();
+					if (arrayAges.length == 0) {
+						maxAge.innerText = textMax + '0';
+						minAge.innerText = textMax + '0';
+					} else {
+						const completeMax = textMax + Math.max.apply(null, arrayAges);
+						maxAge.innerText = completeMax;
+						const completeMin = textMin + Math.min.apply(null, arrayAges);
+						minAge.innerText = completeMin;
+					}
 				}
 			}
 			//CALLING OUTER METHODS TO GET ARRAY OF AGES, MIN AND MAX;
