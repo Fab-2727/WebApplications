@@ -93,7 +93,7 @@ btn.onclick = function () {
 	const newPerson = document.createElement("LI");
 	const txt = document.createTextNode(inputName.value + " " + inputAge.value);
 	if (!(inputName.value.trim() === '') && inputAge.value > 0 && inputAge.value < 100 && inputName.value.length > 2) {
-		if (!(/^[a-zA-Z]+$/.test(inputName.value))) {
+		if (!(/^[a-zA-Z\s]*$/.test(inputName.value))) {
 			alert("No se admiten números en el campo 'Nombre'");
 		} else {
 			newPerson.appendChild(txt);
